@@ -29,17 +29,18 @@ public class DBServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		dbAccess=new Select(); //Selectクラスのインスタンスを代入
-		try {
 		// 全データ抽出処理
-			dbAccess.execute(request); //Selectクラスのexecuteメソッドを実行、これだけでテーブルを全件取得してrequestスコープに結果のリストを設定するまでをやってくれる
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}
+		dbAccess = new Select();//インターフェイスの型として定義
+		try {
+			dbAccess.execute(request);//全データの情報を持ったexecuteクラスを呼び出している
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}	
+		// ここに処理を記入してください
 		
-		ServletContext context=getServletContext();
-		RequestDispatcher dis=context.getRequestDispatcher("/db.jsp"); //db.jspに処理が飛ぶ
-		dis.forward(request,response);
+	ServletContext context = getServletContext();
+	RequestDispatcher dis = context.getRequestDispatcher("/db.jsp");
+	dis.forward(request, response);
 	}
 
 	/**
@@ -47,23 +48,33 @@ public class DBServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// request.setCharacterEncoding("utf-8");...filterを用意したので必要なし
-		String btn = request.getParameter("button"); //String型のbtnにdb.jspで押されたbuttonが入っている
-		System.out.println(btn); //POSTボタンが押されたことをコンソールに表示
-		try {
-			//DB挿入処理
-			String input=request.getParameter("text"); //textに文字がinputされる
-			//100文字以上ならdoGet
-			if(input.equals("")) { //空文字が入力されたら
-				request.setAttribute("message","何も入力されていません"); //messageに"何も入力されていません"が入る
-			}else { //入力された値が空文字じゃなかったら
-				dbAccess=new Insert();
-				dbAccess.execute(request);  //最後はdoGetメソッドをまた実行している
-			}
+	String btn = request.getParameter("button");
+	System.out.println(btn);
+	try {	
+				// ここに処理を記入してください
+				if(btn.equals("POST")) {//ｂｔｎが押されたものがPostだった場合
+					String input = request.getParameter("text");
+					
+					if(input.length() >= 100 || input.equals("") || input == null) {
+						request.setAttribute("message", "何も入力されていないか、100文字を超えています");
+						doGet(request, response);
+						return;
+					}
+					dbAccess = new Insert();																													
+					
+					}else {
+						dbAccess = new Delete();
+					}
+				
+					dbAccess.execute(request);
+				
+			
 			// 全データ抽出処理
 			doGet(request, response);
 		}catch(Exception e) {
-			System.out.println("Exception occured..."); //コンソールに表示される
+			System.out.println("Exception occured...");
 			System.out.println(e);
 		}
 	}
 }
+
