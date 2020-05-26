@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .message{
-	color: red;
+	color: #ff0000;
 }
 
 h1, p{
@@ -27,18 +27,18 @@ h1, p{
 
 .textbox-radius{
 	border-radius: 10px; /* ボックスの四つ角を丸くする */
-	border: 2px solid #2eb8e6;  /* 枠線 */
+	border: 2px solid #ff8040;  /* 枠線 */
 	width: 60%;
 }
 
 .button-radius{
 	border-radius: 10px; /* ボックスの四つ角を丸くする */
-	background: #2eb8e6;
+	background: #000000;
 	color: #FFF;
 	border: 0px;  /* 枠線 */
-	width: 80px;
+	width: 110px;
 	height: 30px;
-	margin-left: 10px;
+	margin-left: 80px;
 }
 
 .button-delete{
@@ -60,6 +60,7 @@ body{
     max-width: 50%;
   	margin: 0 auto;
   	border: solid 1px #EEE;
+  
 }
 
 .content{
@@ -77,7 +78,7 @@ body{
 }
 
 .hedder{
-	background: skyblue;
+	background: #000000;
 	color: white;
 	height: 200px;
 	margin-bottom: 0;
