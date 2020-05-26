@@ -12,6 +12,7 @@
 	<div class="hedder">
 		<h1>Hello World</h1>
 	</div>
+	
 	<div class="content">
 	
 		<div class="post">
@@ -38,7 +39,7 @@
 						<div class="content">${i.content}</div>
 						<form action="DBServlet" method="post" class="control">
 							<input type="submit" name="button" value="" class="button-delete"><input type="hidden" name="id" value="${i.id}">
-						</form>
+		
 					</div>
 				</div>
 			</c:forEach>
