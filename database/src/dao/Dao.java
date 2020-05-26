@@ -157,4 +157,24 @@ public class Dao {
 	        return false;
 	    }
 	}
+	
+public int getLoginInfo(String name, String pass) throws SQLException{
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+	
+		int row = 0;
+		sql = "SELECT * from user where username = ? and password = ?";
+		ps = con.prepareStatement(sql);
+		ps.setString(1, name);
+		ps.setString(2, pass);
+		
+		try {
+			rs = ps.executeQuery();
+			rs.last();
+			row = rs.getRow();
+		}finally {
+			ps.close();
+		}
+		return row;
+	}
 }

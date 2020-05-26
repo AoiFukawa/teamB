@@ -42,7 +42,8 @@ public class DBServlet extends HttpServlet {
 	RequestDispatcher dis = context.getRequestDispatcher("/db.jsp");
 	dis.forward(request, response);
 	}
-
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
