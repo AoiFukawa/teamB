@@ -31,6 +31,7 @@ public class Dao {
 		System.out.println("Connection success!");//接続成功するとコンソールに現れる
 	}
 	
+	
 	/**
 	 * 
 	 */

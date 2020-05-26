@@ -28,9 +28,9 @@ public class Delete implements DBAccess {
 			n = dao.deleteData(code);
 			
 			if(n > 0) {
-				request.setAttribute("message", "商品の削除が完了しました");
+				request.setAttribute("message", "投稿の削除が完了しました");
 			}else {	
-				request.setAttribute("message", "商品の削除に失敗しました");
+				request.setAttribute("message", "投稿の削除に失敗しました");
 			}
 		}finally {
 			if(dao != null) dao.close();
