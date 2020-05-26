@@ -1,4 +1,4 @@
-package dao;
+package dao;//databaseとのアクセスを担当するジャバ
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -21,56 +21,58 @@ public class Dao {
 	 * インスタンス化時にDB接続が行われる
 	 * @throws SQLException
 	 */
-	public Dao() throws SQLException{ //Daoクラスのコンストラクタが記述
-		String url="jdbc:mysql://localhost:3306/javaweb?serverTimezone=UTC"; //とこのデータベースか
-		String user="root"; //ユーザー名
-		String pass="root"; //パスワード
-		con=DriverManager.getConnection(url,user,pass); //3の情報を使ってデータベースに接続，conに接続情報が入る(接続に失敗すると例外発生)
-		System.out.println("Connection success!"); //コンソールに表示
+	public Dao() throws SQLException{//Daoクラスのコンストラクタ/データーベースに接続するためのコンストラクタ
 		
+		// ここに処理を記入してください
+		String url ="jdbc:mysql://localhost:3306/javaweb?serverTimezone=UTC";//dataベースがある場所
+		String user = "root";//ユーザー名
+		String pass = "root";//パスワード
+		con = DriverManager.getConnection(url, user, pass);//3つの仮引数の情報を使ってデーターベースへアクセスする
+		System.out.println("Connection success!");//接続成功するとコンソールに現れる
 	}
 	
 	/**
-	 * DB接続を切るためのメソッド
+	 * 
 	 */
-	public void close() {
+	public void close() { 
 		try {
-			if(con != null) con.close(); //con(接続情報を持っている)がnullじゃなかったら(=conに接続情報が格納されている)からconを閉じる(接続を切断)
+			if(con != null) con.close();//DB接続を切るためのメソッド 
 		}catch(SQLException e){
-			e.printStackTrace(); //エラー発生時点までの処理の呼び出し履歴
+			e.printStackTrace();
 		}
 	}
 	
 	/**
-	 * DBに保存されているデータを全件取得するメソッド<br>
+	 * <br>
 	 * DBから取得後、件数分のdtoに1レコードずつ情報を持たせてしてArrayListに格納<br>
 	 * @return ID列で降順にソートしたArrayList
 	 * @throws SQLException
 	 */
-	public ArrayList<MessageDto> getListAll() throws SQLException{ //取得した行をArrayListに追加，MessageDtoが一行分のデータを持っている
-		//データベースで受け取った値をALとして受け取る
-		sql="select * from tweet";
-		PreparedStatement ps=null; //SQL文の準備クラス
-		ResultSet rs=null; //取得した行などの情報がResultSetインターフェースのオブジェクトに格納されている
-		ArrayList<MessageDto>list=null; //ArrayListはデータをまとめて保持するもの
+	public ArrayList<MessageDto> getListAll() throws SQLException{//DBに保存されているデータを全件取得するメソッド/メッセージdto.javaが一行分のデータを取得する
 		
-		try {  //while文は条件がtrueの間ループする，rsは一行分の値を持っている
-			ps=con.prepareStatement(sql); //SQL文実行の準備，psにはどのSQL文にどのデータベースを発行するのかの情報を持っている
-			rs=ps.executeQuery(); //SQL文を実行，rsが実行結果を持っている
-			list=new ArrayList<>(); //結果を受けとるALをインスタンス化，<>の中は省略可
-			MessageDto dto; //MessageDto型の変数dtoを宣言
-			while(rs.next()) { //カーソルが動いて次の表があるかないかをtrueかfalseで返す
-				dto=new MessageDto(); //dto変数にMessageDtoクラスのインスタンスを代入(インスタンス化)
-				dto.setId(rs.getInt("id")); //，idのゲッターを使って"実行結果の"id列を取得したものを格納している
-				dto.setContent(rs.getString("content"));
-				dto.setDate(rs.getString("date"));
-				list.add(dto); //ALのlist変数にdtoを追加格納
+		// ここに処理を記入してください
+		sql = "select * from tweet";//sql文を文字列として配置
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		ArrayList<MessageDto> list = null;
+		
+		try {
+			ps = con.prepareStatement(sql);//sql文の実行準備
+			rs = ps.executeQuery();//
+			list = new ArrayList<>();//ArrayListをインスタンス化
+			MessageDto dto;
+			while(rs.next()) {//rs.nextによってカーソルが移動する
+				dto = new MessageDto();//dtoにインスタンス化したものを与え、メッセージｄｔoのインスタンス化をしている
+				dto.setId(rs.getInt("id"));//id列の値を取得
+				dto.setContent(rs.getString("content"));//content列の文をストリング型として受け取る
+				dto.setDate(rs.getString("date"));//date列を取得してString型として受け取る
+				list.add(dto);
 			}
-			rs.close(); //実行結果はいらなくなるのでリソースの解放
-		}finally {
-			ps.close(); //SQL情報はいらなくなるのでリソースの解放
+			rs.close();//SQL自体必要がなくなったためリソースを開放する
+		}finally {//どの
+			ps.close();//SQL自体必要がなくなったためリソースを開放する
+			
 		}
-		//ALに格納されている順番の変更(これをやらないと新しいものが一番下に来てしまう)
 		Comparator<MessageDto> comparator = Comparator.comparing(MessageDto::getId).reversed();
 		
 		return (ArrayList<MessageDto>) list.stream().sorted(comparator).collect(Collectors.toList());	
@@ -83,21 +85,22 @@ public class Dao {
 	 * @return 成功件数
 	 * @throws SQLException
 	 */
-	public int insertData(String input) throws SQLException{ //inputはユーザーが打った内容
-		//tryブロックの中の変数はtryブロックの中でしか使えない
-		PreparedStatement ps=null; //SQL文の準備クラス
-		int n = 0;
-		
-		try {
-			String sql="INSERT INTO tweet (content) VALUES (?)"; //content列に?を追加(idとdateはデータベース側で勝手に入れてくれる)
-			ps=con.prepareStatement(sql); //SQLをどのデータベースにどんなクリエで送るかを準備する
-			ps.setString(1, input); //sql変数の?の値を設定する，1個目の?にinput変数の値を設定する
-			n=ps.executeUpdate(); //SQLの実行，int型で実行した件数が返ってくる
+		public int insertData(String input) throws SQLException{//取得したデータの登録するためのメソッド/String inputはユーザーが打ち込んだ内容/int型として戻ってくる
+			PreparedStatement ps = null;//psSQLをどのデータベースにどのようなクエリを送るのか定義
+			int n = 0;//トライブロックの中にいると戻り値として認識されない
+			try {
+				String sql = "INSERT INTO tweet (content)VALUES (?)";//?はユーザーが打ち込んだ値
+				ps = con.prepareStatement(sql);
+				ps.setString(1,  input);//
+				n = ps.executeUpdate();//sqlの実行文
+
 		}finally {
-			ps.close(); //SQL文の情報を解放
-		}	
-		return n; //何件成功したか(登録したか)を返す
-	}
+			ps.close();
+		}
+		// ここに処理を記入してください
+		return n;//コード認証が成功した数を返す戻り式
+		}
+	
 	
 	/**
 	 * データ削除メソッド<br>
@@ -107,10 +110,9 @@ public class Dao {
 	 * @throws SQLException
 	 */
 	public int deleteData(String id) throws SQLException {
-		
+		String sql = "delete from tweet where id = ?";
+		return executeUpdate(sql, id);
 		// ここに処理を記入してください
-		
-		return 0;
 	}
 	
 	/**
@@ -124,8 +126,21 @@ public class Dao {
 	private int executeUpdate(String sql, String param) throws SQLException {
 		
 		// ここに処理を記入してください
+		PreparedStatement ps = null;
+		int n = 0;
 		
-		return 0;
+		try {
+			ps = con.prepareStatement(sql);
+			
+			if(isNumber(param)) ps.setInt(1,  Integer.parseInt(param));
+			else ps.setString(1,  param);
+			
+			n = ps.executeUpdate();
+			
+		}finally {
+			ps.close();
+		}
+		return n;
 	}
 	
 	/**
