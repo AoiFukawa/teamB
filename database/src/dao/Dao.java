@@ -55,7 +55,7 @@ public class Dao {
 	public ArrayList<MessageDto> getListAll() throws SQLException{//DBに保存されているデータを全件取得するメソッド/メッセージdto.javaが一行分のデータを取得する
 		
 		// ここに処理を記入してください
-		sql = "select * from tweet";//sql文を文字列として配置
+		sql = " select * from tweet left join user on user.userid = tweet.userid;";//sql文を文字列として配置
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		ArrayList<MessageDto> list = null;
@@ -68,6 +68,8 @@ public class Dao {
 			while(rs.next()) {//rs.nextによってカーソルが移動する
 				dto = new MessageDto();//dtoにインスタンス化したものを与え、メッセージｄｔoのインスタンス化をしている
 				dto.setId(rs.getInt("id"));//id列の値を取得
+				dto.setMention(rs.getInt("userid"));
+				dto.setusername(rs.getString("username"));
 				dto.setContent(rs.getString("content"));//content列の文をストリング型として受け取る
 				dto.setDate(rs.getString("date"));//date列を取得してString型として受け取る
 				list.add(dto);
@@ -89,13 +91,14 @@ public class Dao {
 	 * @return 成功件数
 	 * @throws SQLException
 	 */
-		public int insertData(String input) throws SQLException{//取得したデータの登録するためのメソッド/String inputはユーザーが打ち込んだ内容/int型として戻ってくる
+		public int insertData(String input,int input2) throws SQLException{//取得したデータの登録するためのメソッド/String inputはユーザーが打ち込んだ内容/int型として戻ってくる
 			PreparedStatement ps = null;//psSQLをどのデータベースにどのようなクエリを送るのか定義
 			int n = 0;//トライブロックの中にいると戻り値として認識されない
 			try {
-				String sql = "INSERT INTO tweet (content)VALUES (?)";//?はユーザーが打ち込んだ値
+				String sql = "INSERT INTO tweet (content,userid)VALUES (?,?)";//?はユーザーが打ち込んだ値
 				ps = con.prepareStatement(sql);
 				ps.setString(1,  input);//
+				ps.setInt(2,  input2);//
 				n = ps.executeUpdate();//sqlの実行文
 
 		}finally {

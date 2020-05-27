@@ -29,7 +29,7 @@ public class SelectForLogin implements DBAccess {
 		
 		try {
 			dao = new Dao();
-			n = dao.getLoginInfo(name, pass);
+			n = dao.getLoginInfo(name, pass, request);
 
 			if(n > 0) {
 				request.setAttribute("flag", true);

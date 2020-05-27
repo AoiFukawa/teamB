@@ -43,7 +43,7 @@ request.setCharacterEncoding("utf-8");
 		// セッションの破棄
 		if(session != null) session.invalidate(); 
 		// ここに処理を記入してください
-		
+			
 		// ログイン失敗時、ログアウト時、不正操作時以外の場合
 		if(request.getAttribute("message") == null) request.setAttribute("message", "名前とパスワードを入力してください"); //messageがnullの場合
 				
