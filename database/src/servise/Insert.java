@@ -3,6 +3,7 @@ package servise;
 import java.sql.SQLException;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import dao.Dao;
 
@@ -18,11 +19,12 @@ public class Insert implements DBAccess { //DBAccess
 		
 		// ここに処理を記入してください
 		Dao dao = null;
+		HttpSession session = request.getSession(false);
 		String input = request.getParameter("text");//ユーザーからの入力を受け取っている
-		
+		int input2 = (int)session.getAttribute("userid");
 		try {
 			dao = new Dao();//Daoクラスのコンストラクタでdbとつなげる
-			if(dao.insertData(input) > 0) {//inputとはユーザーがテキストをポストした回数
+			if(dao.insertData(input,input2) > 0) {//inputとはユーザーがテキストをポストした回数
 				request.setAttribute("message", "投稿完了!");
 				System.out.println("Insert success!");
 			}else {//なんらかの理由によりポストが出来なかった場合

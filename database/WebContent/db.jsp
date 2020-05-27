@@ -32,9 +32,11 @@
 				<div class="tweet">
 					<div class="icon"><div class="circle"></div></div>
 					
-					<div class="nagio">
-						<div class="name">Hello World</div>
-						<div class="mention">@hello_world-${i.date}</div>
+					
+					<div>
+						<div class="name">${i.username}</div>
+						<div class="mention">${i.mention}-${i.date}</div>
+
 						<div class="content">${i.content}</div>
 						<form action="DBServlet" method="post" class="control">
 							<input type="submit" name="button" value="" class="button-delete"><input type="hidden" name="id" value="${i.id}">

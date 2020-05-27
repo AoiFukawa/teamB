@@ -16,6 +16,10 @@ public class MessageDto { //MessageDtoが一行分のデータを持っている
 	 */
 	int id;
 	
+	int mention;
+	
+	String username;
+	
 	/**
 	 * 投稿内容
 	 */
@@ -27,6 +31,7 @@ public class MessageDto { //MessageDtoが一行分のデータを持っている
 	String date;
 
 	
+	
 	public int getId() {
 		return id;
 	}
@@ -35,6 +40,22 @@ public class MessageDto { //MessageDtoが一行分のデータを持っている
 		this.id = id;
 	}
 
+	public int getMention() {
+		return mention;
+	}
+
+	public void setMention(int mention) {
+		this.mention = mention;
+	}
+	
+	public String getusername() {
+		return username;
+	}
+
+	public void setusername(String username) {
+		this.username = username;
+	}
+	
 	public String getContent() {
 		return content;
 	}

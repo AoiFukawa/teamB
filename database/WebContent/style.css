@@ -27,7 +27,7 @@ h1, p{
 
 .textbox-radius{
 	border-radius: 10px; /* ボックスの四つ角を丸くする */
-	border: 2px solid #2eb8e6;  /* 枠線 */
+	border: 2px solid #ffffff;  /* 枠線 */
 	width: 60%;
 }
 
@@ -99,14 +99,15 @@ body{
 }
 
 .hedder{
-	background: #ffffff;
-	color: #ffffff;
-	height: 200px;
+	background: #000000;
+	color: #ffff00;
+	height: 160px;
 	margin-bottom: 0;
-	padding-top: 10%;
-	padding-left: 5%;
+	padding-right:500px;
+	padding-top: 5%;
+	padding-left: 10%;
 	background-image:url(地球　画像.jpg);
-	
+	background-repeat: no-repeat;
 	
 }
 
@@ -114,4 +115,5 @@ body{
 	padding-top: 5px;
 	padding-left: 5px;
 }
+
 

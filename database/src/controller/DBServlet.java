@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import servise.DBAccess;
 import servise.Delete;
@@ -42,7 +43,8 @@ public class DBServlet extends HttpServlet {
 	RequestDispatcher dis = context.getRequestDispatcher("/db.jsp");
 	dis.forward(request, response);
 	}
-
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -53,8 +55,9 @@ public class DBServlet extends HttpServlet {
 	try {	
 				// ここに処理を記入してください
 				if(btn.equals("POST")) {//ｂｔｎが押されたものがPostだった場合
+					HttpSession session = request.getSession(false);
 					String input = request.getParameter("text");
-					
+
 					if(input.length() >= 100 || input.equals("") || input == null) {
 						request.setAttribute("message", "何も入力されていないか、100文字を超えています");
 						doGet(request, response);
