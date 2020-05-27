@@ -33,8 +33,8 @@
 					<div class="icon"><div class="circle"></div></div>
 					
 					<div>
-						<div class="name">Hello World</div>
-						<div class="mention">@hello_world-${i.date}</div>
+						<div class="name">${username}</div>
+						<div class="mention">${userid}-${i.date}</div>
 						<div class="content">${i.content}</div>
 						<form action="DBServlet" method="post" class="control">
 							<input type="submit" name="button" value="" class="button-delete"><input type="hidden" name="id" value="${i.id}">

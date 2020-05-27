@@ -60,21 +60,21 @@ request.setCharacterEncoding("utf-8");
 		// TODO Auto-generated method stub
 		Dao dao;
 		int n = 0;
+		
 		try {
 			dao = new Dao();
-			n = dao.getLoginInfo(request.getParameter("name"), request.getParameter("pass"));
+			n = dao.getLoginInfo(request.getParameter("name"), request.getParameter("pass"), request);
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}	
-			if(n > 0) {
-				response.sendRedirect("http://localhost:8080/database/DBServlet");
-			}else {
-				request.setAttribute("message", "ログインに失敗しました"); 
-				
-				doGet(request, response);
-			}
-		
+		if(n > 0) {
+			response.sendRedirect("http://localhost:8080/database/DBServlet");
+		}else {
+			request.setAttribute("message", "ログインに失敗しました"); 
+			doGet(request, response);
+		}
+	
 		
 		
 	}

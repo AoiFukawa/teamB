@@ -1,5 +1,6 @@
 package dao;//databaseとのアクセスを担当するジャバ
 
+import java.net.http.HttpRequest;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -8,6 +9,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.stream.Collectors;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import dto.MessageDto;
 
@@ -158,7 +162,7 @@ public class Dao {
 	    }
 	}
 	
-public int getLoginInfo(String name, String pass) throws SQLException{
+public int getLoginInfo(String name, String pass, HttpServletRequest request) throws SQLException{
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 	
@@ -172,6 +176,11 @@ public int getLoginInfo(String name, String pass) throws SQLException{
 			rs = ps.executeQuery();
 			rs.last();
 			row = rs.getRow();
+			if(row > 0) {
+				HttpSession session = request.getSession(true);
+				session.setAttribute("userid", rs.getInt("userid"));
+				session.setAttribute("username", rs.getString("username"));
+			}
 		}finally {
 			ps.close();
 		}
