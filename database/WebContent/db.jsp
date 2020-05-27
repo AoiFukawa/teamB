@@ -20,7 +20,7 @@
 				<p class="message">${message}</p> <!-- message表示(messageの中がnullだったらfalseになるから一切表示されない) -->
 			</c:if>
 		
-			<form action="DBServlet" method="post">
+			<form class="cp_iptxt" action="DBServlet" method="post">
 				<textarea name="text" rows="4" cols="30" class = "textbox-radius" placeholder="いまなにしている？"></textarea>
 				<input type="submit" name="button" value="POST" class="button-radius">
 			</form>
@@ -32,7 +32,7 @@
 				<div class="tweet">
 					<div class="icon"><div class="circle"></div></div>
 					
-					<div>
+					<div class="nagio">
 						<div class="name">Hello World</div>
 						<div class="mention">@hello_world-${i.date}</div>
 						<div class="content">${i.content}</div>
