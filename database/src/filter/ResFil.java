@@ -37,7 +37,7 @@ public class ResFil implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		// TODO Auto-generated method stub
 		// place your code here
-		response.setContentType("text/html; charset=UTF-8");
+		// response.setContentType("text/html; charset=UTF-8");
 		System.out.println("response filter works");
 		// pass the request along the filter chain
 		chain.doFilter(request, response);
