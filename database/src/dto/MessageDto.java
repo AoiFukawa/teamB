@@ -30,7 +30,7 @@ public class MessageDto { //MessageDtoが一行分のデータを持っている
 	 */
 	String date;
 
-	
+	boolean favorite;
 	
 	public int getId() {
 		return id;
@@ -70,5 +70,13 @@ public class MessageDto { //MessageDtoが一行分のデータを持っている
 
 	public void setDate(String date) {
 		this.date = date;
+	}
+	
+	public boolean getFavorite() {
+		return favorite;
+	}
+
+	public void setFavorite(boolean favorite) {
+		this.favorite = favorite;
 	}
 }

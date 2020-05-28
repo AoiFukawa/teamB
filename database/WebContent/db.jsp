@@ -22,25 +22,32 @@
 			</c:if>
 		
 			<form class="cp_iptxt" action="DBServlet" method="post">
-				<textarea name="text" rows="4" cols="30" class = "textbox-radius" placeholder="いまなにしている？"></textarea>
+				<textarea name="text" rows="4" cols="30" class = "textbox-radius" placeholder="What are you doing now？"></textarea>
 				<input type="submit" name="button" value="POST" class="button-radius">
+				<input type="submit" name="button" value="update" class="button-reload button-radius">
 			</form>
 		</div>
 		<br>
 		
 		<c:if test="${list !=null}">
 			<c:forEach var="i" items="${list}">
+				<c:set var="css" value="nofav_icon" />
+				<c:if test="${i.favorite}">
+					<c:set var="css" value="fav_icon" />
+				</c:if>
+			
 				<div class="tweet">
 					<div class="icon"><div class="circle"></div></div>
 					
-					
 					<div>
 						<div class="name">${i.username}</div>
-						<div class="mention">${i.mention}-${i.date}</div>
+						<div class="mention">@${i.username}_${i.mention}-${i.date}</div>
 
 						<div class="content">${i.content}</div>
 						<form action="DBServlet" method="post" class="control">
 							<input type="submit" name="button" value="" class="button-delete"><input type="hidden" name="id" value="${i.id}">
+							<input type="hidden" name="fav_param" value="${i.favorite}">
+							<input name="button" class="fav_button ${css}" type="submit" value="favorite">
 						</form>
 					</div>
 				</div>

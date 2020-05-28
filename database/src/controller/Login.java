@@ -46,7 +46,7 @@ request.setCharacterEncoding("utf-8");
 			
 		// ログイン失敗時、ログアウト時、不正操作時以外の場合
 		if(request.getAttribute("message") == null) request.setAttribute("message", "Enter your Name and Password"); //messageがnullの場合
-				
+
 		response.setContentType("text/html; charset=UTF-8");
 		ServletContext context = getServletContext();
 		RequestDispatcher dis = context.getRequestDispatcher("/top.jsp");

@@ -7,24 +7,18 @@ import javax.servlet.http.HttpSession;
 
 import dao.Dao;
 
-/**
- * DBAccessインターフェースを実装する登録クラス<br>
- * パラメータに受取った入力値をDBに登録する
- * @author user
- *
- */
-public class Insert implements DBAccess { //DBAccess
+public class Favorite implements DBAccess { //DBAccess
 
 	public void execute(HttpServletRequest request) throws SQLException {//executeメソッド
 		
 		// ここに処理を記入してください
 		Dao dao = null;
 		HttpSession session = request.getSession(false);
-		String input = request.getParameter("text");//ユーザーからの入力を受け取っている
-		int input2 = (int)session.getAttribute("userid");
+		String input = request.getParameter("id");
+		boolean input2 = !Boolean.parseBoolean((String)request.getParameter("fav_param"));
 		try {
 			dao = new Dao();//Daoクラスのコンストラクタでdbとつなげる
-			if(dao.insertData(input,input2) > 0) {//inputとはユーザーがテキストをポストした回数
+			if(dao.favoriteData(input,input2) > 0) {//inputとはユーザーがテキストをポストした回数
 				request.setAttribute("message", "Post completed!");
 				System.out.println("Insert success!");
 			}else {//なんらかの理由によりポストが出来なかった場合

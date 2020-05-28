@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import servise.DBAccess;
 import servise.Delete;
+import servise.Favorite;
 import servise.Insert;
 import servise.Select;
 
@@ -50,28 +51,33 @@ public class DBServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// request.setCharacterEncoding("utf-8");...filterを用意したので必要なし
+	
 	String btn = request.getParameter("button");
 	System.out.println(btn);
 	try {	
-				// ここに処理を記入してください
-				if(btn.equals("POST")) {//ｂｔｎが押されたものがPostだった場合
-					HttpSession session = request.getSession(false);
-					String input = request.getParameter("text");
-
-					if(input.length() >= 100 || input.equals("") || input == null) {
-						request.setAttribute("message", "何も入力されていないか、100文字を超えています");
-						doGet(request, response);
-						return;
-					}
-					dbAccess = new Insert();																													
-					
-					}else {
-						dbAccess = new Delete();
-					}
+			// ここに処理を記入してください
+			if(btn.equals("POST")) {//ｂｔｎが押されたものがPostだった場合
+				HttpSession session = request.getSession(false);
+				String input = request.getParameter("text");
+	
+				if(input.length() >= 100 || input.equals("") || input == null) {
+					request.setAttribute("message", "\r\n" + "Is not entered or exceeds 100 characters");
+					doGet(request, response);
+					return;
+				}
+				dbAccess = new Insert();
+			}else if(btn.equals("update")) {
+				response.sendRedirect("http://localhost:8080/database/DBServlet");
 				
-					dbAccess.execute(request);
-				
+			}else if(btn.equals("favorite")) {
+				dbAccess = new Favorite();
+			}else {
+				dbAccess = new Delete();
+			}
 			
+			dbAccess.execute(request);
+			
+		
 			// 全データ抽出処理
 			doGet(request, response);
 		}catch(Exception e) {
