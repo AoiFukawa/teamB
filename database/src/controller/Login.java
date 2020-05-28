@@ -45,7 +45,11 @@ request.setCharacterEncoding("utf-8");
 		// ここに処理を記入してください
 			
 		// ログイン失敗時、ログアウト時、不正操作時以外の場合
-		if(request.getAttribute("message") == null) request.setAttribute("message", "Please input user name and password."); //messageがnullの場合
+
+		
+
+		if(request.getAttribute("message") == null) request.setAttribute("message", "Enter your Name and Password"); //messageがnullの場合
+
 				
 		response.setContentType("text/html; charset=UTF-8");
 		ServletContext context = getServletContext();
@@ -71,7 +75,7 @@ request.setCharacterEncoding("utf-8");
 		if(n > 0) {
 			response.sendRedirect("http://localhost:8080/database/DBServlet");
 		}else {
-			request.setAttribute("message", "ログインに失敗しました"); 
+			request.setAttribute("message", "I failed to loguin"); 
 			doGet(request, response);
 		}
 	
