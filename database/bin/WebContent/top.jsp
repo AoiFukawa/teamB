@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <title>top</title>
-<link rel="stylesheet" href="top.css">
+<link rel="stylesheet" href="./style/top.css">
 <style type="text/css">
 label{
 	display: block;
@@ -16,8 +16,9 @@ label{
 </style>
 </head>
 <body>
+
 	<div>
-		<h1>Login</h1>
+		<h1>ログインページ</h1>
 		<p>${message}</p>　<!-- messageはログアアウトしましたになる -->
 		<form action="Login" method="post">
 			<label>Name: </label>
@@ -25,17 +26,6 @@ label{
 			<br>
 			<label>Pass: </label>
 			<input type="password" name="pass">
-			<br>
-
-			<label>Image:</label>
-			<select name="img">
-			    <option value="nomal">デフォルト</option>
-			    <option value="spring">春</option>
-			    <option value="summer">夏</option>
-			    <option value="autumn">秋</option>
-			    <option value="winter">冬</option>
-			</select>
-			<br>
 			<input class="submit" type="submit" name="button" value="login">
 		</form>
 	</div>

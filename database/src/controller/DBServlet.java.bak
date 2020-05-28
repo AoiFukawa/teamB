@@ -8,11 +8,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+<<<<<<< HEAD
+=======
 import javax.servlet.http.HttpSession;
 
+>>>>>>> origin/takahashi
 import servise.DBAccess;
 import servise.Delete;
-import servise.Favorite;
 import servise.Insert;
 import servise.Select;
 /**
@@ -30,6 +32,17 @@ public class DBServlet extends HttpServlet {
 		dbAccess = new Select();//インターフェイスの型として定義
 		try {
 			dbAccess.execute(request);//全データの情報を持ったexecuteクラスを呼び出している
+<<<<<<< HEAD
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}	
+			// ここに処理を記入してください
+			
+		ServletContext context = getServletContext();
+		RequestDispatcher dis = context.getRequestDispatcher("/db.jsp");
+		dis.forward(request, response);
+		}
+=======
 	}catch(SQLException e) {
 		e.printStackTrace();
 	}	
@@ -40,6 +53,7 @@ public class DBServlet extends HttpServlet {
 	dis.forward(request, response);
 	}
 	
+>>>>>>> origin/takahashi
 	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -54,23 +68,25 @@ public class DBServlet extends HttpServlet {
 				if(btn.equals("POST")) {//ｂｔｎが押されたものがPostだった場合
 					HttpSession session = request.getSession(false);
 					String input = request.getParameter("text");
-					
-					if(input.equals("テスト") || input.equals("Hello") || input.equals("マスク")) {
-						request.setAttribute("message", "This article cannot be posted...");
-						doGet(request, response);
-						return;
-					}
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/takahashi
 					if(input.length() >= 100 || input.equals("") || input == null) {
 						request.setAttribute("message", "\r\n" + "Is not entered or exceeds 100 characters");
 						doGet(request, response);
 						return;
 					}
+<<<<<<< HEAD
+					dbAccess = new Insert();																													
+					}else {
+=======
 					dbAccess = new Insert();
-					
 				}else if(btn.equals("update")) {
 					response.sendRedirect("http://localhost:8080/database/DBServlet");
 
 				}else {
+>>>>>>> origin/takahashi
 						dbAccess = new Delete();
 					}
 					dbAccess.execute(request);

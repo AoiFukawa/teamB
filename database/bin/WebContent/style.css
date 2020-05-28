@@ -16,8 +16,8 @@ h1, p{
 	width: 50px;
   	height: 50px;
   	border-radius: 50%;
+  	background: url("user_icon.png");/*背景色*/
   	margin-right: 10px;
-  	background-size: cover ;
 }
 
 .tweet{
@@ -72,25 +72,6 @@ h1, p{
 .button-delete:hover{
 	background: url("delete_icon_hover.png") left top no-repeat;
 }
-.fav_button{
-	width: 24px;
-	height: 24px;
-	border: none;
-	filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(358deg) brightness(95%) contrast(112%);
-	text-indent: -9999px;
-}
-.fav_icon{
-	background: url("favorite.svg") no-repeat;
-}
-.fav_icon:hover{
-	background: url("favorite_border.svg") no-repeat;
-}
-.nofav_icon{
-	background: url("favorite_border.svg") no-repeat;
-}
-.nofav_icon:hover{
-	background: url("favorite.svg") no-repeat;
-}
 
 .control{
 	margin-top: 5px;
@@ -98,11 +79,9 @@ h1, p{
 
 body{
     max-width: 50%;
-  	margin:  0 auto;
-  	padding-light: 200px;
+  	margin: 0 auto;
   	border: solid 1px #000000;
   	background-image: url("kumakichi2020A1939_TP_V.jpg");
-    background-size:contain
 }
 
 .content{
@@ -137,16 +116,4 @@ body{
 	padding-left: 5px;
 }
 
-.button-reload{
-	background-image:url('reload.png');
-	background-size: cover;
-	display:inline-block;
-	width:30px;
-	height:30px;
-	text-indent:-9999px;
-	background-color: black;
-}
 
-.favorite:hover{
-	background: url("favorite.png") left top no-repeat;
-}

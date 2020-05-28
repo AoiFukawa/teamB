@@ -1,6 +1,5 @@
 package dao;//databaseとのアクセスを担当するジャバ
 
-import java.net.http.HttpRequest;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -16,17 +15,14 @@ import javax.servlet.http.HttpSession;
 import dto.MessageDto;
 
 public class Dao {
-
 	private Connection con;
 	private String sql;
-	
 	/**
 	 * DB接続コンストラクタ<br>
 	 * インスタンス化時にDB接続が行われる
 	 * @throws SQLException
 	 */
 	public Dao() throws SQLException{//Daoクラスのコンストラクタ/データーベースに接続するためのコンストラクタ
-		
 		// ここに処理を記入してください
 		String url ="jdbc:mysql://192.168.10.14:3306/javaweb?serverTimezone=UTC";//dataベースがある場所
 		String user = "admin";//ユーザー名
@@ -34,7 +30,6 @@ public class Dao {
 		con = DriverManager.getConnection(url, user, pass);//3つの仮引数の情報を使ってデーターベースへアクセスする
 		System.out.println("Connection success!");//接続成功するとコンソールに現れる
 	}
-	
 	/**
 	 * 
 	 */
@@ -45,7 +40,6 @@ public class Dao {
 			e.printStackTrace();
 		}
 	}
-	
 	/**
 	 * <br>
 	 * DBから取得後、件数分のdtoに1レコードずつ情報を持たせてしてArrayListに格納<br>
@@ -53,13 +47,11 @@ public class Dao {
 	 * @throws SQLException
 	 */
 	public ArrayList<MessageDto> getListAll() throws SQLException{//DBに保存されているデータを全件取得するメソッド/メッセージdto.javaが一行分のデータを取得する
-		
 		// ここに処理を記入してください
 		sql = " select * from tweet left join user on user.userid = tweet.userid;";//sql文を文字列として配置
 		PreparedStatement ps = null;
 		ResultSet rs = null;
 		ArrayList<MessageDto> list = null;
-		
 		try {
 			ps = con.prepareStatement(sql);//sql文の実行準備
 			rs = ps.executeQuery();//
@@ -78,13 +70,11 @@ public class Dao {
 			rs.close();//SQL自体必要がなくなったためリソースを開放する
 		}finally {//どの
 			ps.close();//SQL自体必要がなくなったためリソースを開放する
-			
 		}
 		Comparator<MessageDto> comparator = Comparator.comparing(MessageDto::getDate).reversed();
 		
 		return (ArrayList<MessageDto>) list.stream().sorted(comparator).collect(Collectors.toList());	
 	}
-	
 	/**
 	 * データ登録メソッド<br>
 	 * SQL文とパラメータをexecuteUpdateメソッドに渡す
@@ -101,15 +91,12 @@ public class Dao {
 				ps.setString(1,  input);//
 				ps.setInt(2,  input2);//
 				n = ps.executeUpdate();//sqlの実行文
-
 		}finally {
 			ps.close();
 		}
 		// ここに処理を記入してください
 		return n;//コード認証が成功した数を返す戻り式
 		}
-	
-	
 	/**
 	 * データ削除メソッド<br>
 	 * SQL文とパラメータをexecuteUpdateメソッドに渡す
@@ -138,25 +125,19 @@ public class Dao {
 	 * @throws SQLException
 	 */
 	private int executeUpdate(String sql, String param) throws SQLException {
-		
 		// ここに処理を記入してください
 		PreparedStatement ps = null;
 		int n = 0;
-		
 		try {
 			ps = con.prepareStatement(sql);
-			
 			if(isNumber(param)) ps.setInt(1,  Integer.parseInt(param));
 			else ps.setString(1,  param);
-			
 			n = ps.executeUpdate();
-			
 		}finally {
 			ps.close();
 		}
 		return n;
 	}
-	
 	/**
 	 * 登録、削除処理を担当するメソッド<br>
 	 * 使用するメソッドは共通のため汎用化
@@ -203,7 +184,7 @@ public class Dao {
 public int getLoginInfo(String name, String pass, HttpServletRequest request) throws SQLException{
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-	
+
 		int row = 0;
 		sql = "SELECT * from user where username = ? and password = ?";
 		ps = con.prepareStatement(sql);
@@ -214,6 +195,7 @@ public int getLoginInfo(String name, String pass, HttpServletRequest request) th
 			rs = ps.executeQuery();
 			rs.last();
 			row = rs.getRow();
+
 			if(row > 0) {
 				HttpSession session = request.getSession(true);
 				session.setAttribute("userid", rs.getInt("userid"));
