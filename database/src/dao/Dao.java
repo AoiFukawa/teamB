@@ -1,6 +1,6 @@
 package dao;//databaseとのアクセスを担当するジャバ
 
-import java.net.http.HttpRequest;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -28,9 +28,9 @@ public class Dao {
 	public Dao() throws SQLException{//Daoクラスのコンストラクタ/データーベースに接続するためのコンストラクタ
 		
 		// ここに処理を記入してください
-		String url ="jdbc:mysql://localhost:3306/javaweb?serverTimezone=UTC";//dataベースがある場所
-		String user = "root";//ユーザー名
-		String pass = "root";//パスワード
+		String url ="jdbc:mysql://192.168.10.14:3306/javaweb?serverTimezone=UTC";//dataベースがある場所
+		String user = "admin";//ユーザー名
+		String pass = "P@ssw0rd";//パスワード
 		con = DriverManager.getConnection(url, user, pass);//3つの仮引数の情報を使ってデーターベースへアクセスする
 		System.out.println("Connection success!");//接続成功するとコンソールに現れる
 	}

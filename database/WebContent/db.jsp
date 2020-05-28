@@ -31,8 +31,6 @@
 			<c:forEach var="i" items="${list}">
 				<div class="tweet">
 					<div class="icon"><div class="circle"></div></div>
-					
-					
 					<div>
 						<div class="name">${i.username}</div>
 						<div class="mention">${i.mention}-${i.date}</div>
