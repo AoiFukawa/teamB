@@ -26,6 +26,14 @@ label{
 			<br>
 			<label>Pass: </label>
 			<input type="password" name="pass">
+			<br>
+			<label>Image:</label>
+			<select name="img">
+			    <option value="nomal">デフォルト</option>
+			    <option value="spring">春</option>
+			    <option value="summer">夏</option>
+			</select>
+			<br>
 			<input class="submit" type="submit" name="button" value="login">
 		</form>
 	</div>

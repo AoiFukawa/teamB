@@ -33,15 +33,15 @@ public class DBServlet extends HttpServlet {
 		dbAccess = new Select();//インターフェイスの型として定義
 		try {
 			dbAccess.execute(request);//全データの情報を持ったexecuteクラスを呼び出している
-	}catch(SQLException e) {
-		e.printStackTrace();
-	}	
-		// ここに処理を記入してください
-		
-	ServletContext context = getServletContext();
-	RequestDispatcher dis = context.getRequestDispatcher("/db.jsp");
-	dis.forward(request, response);
-	}
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}	
+			// ここに処理を記入してください
+			
+		ServletContext context = getServletContext();
+		RequestDispatcher dis = context.getRequestDispatcher("/db.jsp");
+		dis.forward(request, response);
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

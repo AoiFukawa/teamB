@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import dao.Dao;
 import servise.SelectForLogin;
 
+
 /**
  * Servlet implementation class Login
  */
@@ -34,7 +35,7 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-request.setCharacterEncoding("utf-8"); 
+		request.setCharacterEncoding("utf-8"); 
 		
 		// セッションの取得(なければnullが返ってくる)
 		HttpSession session = request.getSession(false); 
@@ -54,29 +55,42 @@ request.setCharacterEncoding("utf-8");
 	}
 
 	/**
+	 * @param spring 
+	 * @param summer 
+	 * @param nomal 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Dao dao;
 		int n = 0;
+		request.setCharacterEncoding("utf-8");
+		
+		HttpSession session = request.getSession(true);
+
 		try {
 			dao = new Dao();
 			n = dao.getLoginInfo(request.getParameter("name"), request.getParameter("pass"));
+			
+			if(request.getParameter("img").equals("spring")) {
+				session.setAttribute("image", "spring");
+			}else if(request.getParameter("img").equals("summer")) {
+				session.setAttribute("image", "summer");
+			}else {
+				session.setAttribute("image", "nomal");
+			}
 		} catch (SQLException e) {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}	
-			if(n > 0) {
-				response.sendRedirect("http://localhost:8080/database/DBServlet");
-			}else {
-				request.setAttribute("message", "ログインに失敗しました"); 
-				
-				doGet(request, response);
-			}
 		
-		
-		
+		if(n > 0) {
+			response.sendRedirect("http://localhost:8080/database/DBServlet");
+		}else {
+			request.setAttribute("message", "ログインに失敗しました"); 
+			
+			doGet(request, response);
+		}
 	}
 }
 	
