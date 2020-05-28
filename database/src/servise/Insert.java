@@ -22,15 +22,17 @@ public class Insert implements DBAccess { //DBAccess
 		HttpSession session = request.getSession(false);
 		String input = request.getParameter("text");//ユーザーからの入力を受け取っている
 		int input2 = (int)session.getAttribute("userid");
+		
 		try {
 			dao = new Dao();//Daoクラスのコンストラクタでdbとつなげる
-			if(dao.insertData(input,input2) > 0) {//inputとはユーザーがテキストをポストした回数
-				request.setAttribute("message", "投稿完了!");
-				System.out.println("Insert success!");
-			}else {//なんらかの理由によりポストが出来なかった場合
-				request.setAttribute("message", "投稿失敗...");
-				System.out.println("Insert failed...");
-			}
+				if(dao.insertData(input,input2) > 0) {//inputとはユーザーがテキストをポストした回数
+					request.setAttribute("message", "Post completed!");
+					System.out.println("Insert success!");
+				}else {//なんらかの理由によりポストが出来なかった場合
+					request.setAttribute("message", "Post failure...");
+					System.out.println("Insert failed...");
+				}	
+			
 		}finally {
 			if(dao != null) dao.close();
 		}

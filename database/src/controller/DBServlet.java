@@ -53,13 +53,19 @@ public class DBServlet extends HttpServlet {
 				if(btn.equals("POST")) {//ｂｔｎが押されたものがPostだった場合
 					HttpSession session = request.getSession(false);
 					String input = request.getParameter("text");
-
+					
+					if(input.equals("テスト") || input.equals("Hello") || input.equals("マスク")) {
+						request.setAttribute("message", "This article cannot be posted...");
+						doGet(request, response);
+						return;
+					}
 					if(input.length() >= 100 || input.equals("") || input == null) {
 						request.setAttribute("message", "\r\n" + "Is not entered or exceeds 100 characters");
 						doGet(request, response);
 						return;
 					}
 					dbAccess = new Insert();
+					
 				}else if(btn.equals("update")) {
 					response.sendRedirect("http://localhost:8080/database/DBServlet");
 
