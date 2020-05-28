@@ -31,9 +31,7 @@
 		<c:if test="${list !=null}">
 			<c:forEach var="i" items="${list}">
 				<div class="tweet">
-					<div class="icon"><div class="circle"></div></div>
-					
-					<div>
+					<div class="icon"><div class="circle" style="background: url('${image}.png');"></div></div>
 						<div class="name">Hello World</div>
 						<div class="mention">@hello_world-${i.date}</div>
 						<div class="content">${i.content}</div>
