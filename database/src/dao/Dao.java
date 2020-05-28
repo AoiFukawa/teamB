@@ -79,7 +79,7 @@ public class Dao {
 			ps.close();//SQL自体必要がなくなったためリソースを開放する
 			
 		}
-		Comparator<MessageDto> comparator = Comparator.comparing(MessageDto::getId).reversed();
+		Comparator<MessageDto> comparator = Comparator.comparing(MessageDto::getDate).reversed();
 		
 		return (ArrayList<MessageDto>) list.stream().sorted(comparator).collect(Collectors.toList());	
 	}

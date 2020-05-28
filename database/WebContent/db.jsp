@@ -21,7 +21,7 @@
 			</c:if>
 		
 			<form class="cp_iptxt" action="DBServlet" method="post">
-				<textarea name="text" rows="4" cols="30" class = "textbox-radius" placeholder="いまなにしている？"></textarea>
+				<textarea name="text" rows="4" cols="30" class = "textbox-radius" placeholder="What are you doing now？"></textarea>
 				<input type="submit" name="button" value="update" class="button-radius">
 				<input type="submit" name="button" value="POST" class="button-radius">
 			</form>

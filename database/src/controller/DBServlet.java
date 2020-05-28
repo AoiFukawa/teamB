@@ -60,7 +60,7 @@ public class DBServlet extends HttpServlet {
 					String input = request.getParameter("text");
 
 					if(input.length() >= 100 || input.equals("") || input == null) {
-						request.setAttribute("message", "何も入力されていないか、100文字を超えています");
+						request.setAttribute("message", "\r\n" + "Is not entered or exceeds 100 characters");
 						doGet(request, response);
 						return;
 					}
