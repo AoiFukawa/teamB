@@ -50,6 +50,7 @@ public class DBServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// request.setCharacterEncoding("utf-8");...filterを用意したので必要なし
+	
 	String btn = request.getParameter("button");
 	System.out.println(btn);
 	try {	
@@ -64,8 +65,7 @@ public class DBServlet extends HttpServlet {
 						return;
 					}
 					dbAccess = new Insert();																													
-					
-					}else {
+				}else {
 						dbAccess = new Delete();
 					}
 				

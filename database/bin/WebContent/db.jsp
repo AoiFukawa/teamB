@@ -22,7 +22,6 @@
 		
 			<form class="cp_iptxt" action="DBServlet" method="post">
 				<textarea name="text" rows="4" cols="30" class = "textbox-radius" placeholder="いまなにしている？"></textarea>
-				<input type="submit" name="button" value="update" class="button-radius">
 				<input type="submit" name="button" value="POST" class="button-radius">
 			</form>
 		</div>
@@ -32,14 +31,12 @@
 			<c:forEach var="i" items="${list}">
 				<div class="tweet">
 					<div class="icon"><div class="circle"></div></div>
+					
+					
 					<div>
 						<div class="name">${i.username}</div>
-<<<<<<< HEAD
 						<div class="mention">${i.mention}-${i.date}</div>
-=======
-						<div class="mention">@${i.username}_${i.mention}-${i.date}</div>
 
->>>>>>> origin/takahashi
 						<div class="content">${i.content}</div>
 						<form action="DBServlet" method="post" class="control">
 							<input type="submit" name="button" value="" class="button-delete"><input type="hidden" name="id" value="${i.id}">

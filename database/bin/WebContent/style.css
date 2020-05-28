@@ -1,0 +1,119 @@
+@charset "UTF-8";
+.message{
+	color: #ffff00;
+}
+
+h1, p{
+	margin-top: 0;
+}
+
+.icon{
+	float:left;
+  	height: 80px;
+}
+
+.circle{
+	width: 50px;
+  	height: 50px;
+  	border-radius: 50%;
+  	background: url("user_icon.png");/*背景色*/
+  	margin-right: 10px;
+}
+
+.tweet{
+	padding: 5px;
+  	border-top: solid 1px #EEE;
+}
+
+.textbox-radius{
+	border-radius: 10px; /* ボックスの四つ角を丸くする */
+	border: 2px solid #ffffff;  /* 枠線 */
+	width: 60%;
+}
+
+.button-radius{
+	border-radius: 10px; /* ボックスの四つ角を丸くする */
+	background: #000000;
+	color: #ff0000;
+	border: 0px;  /* 枠線 */
+	width: 80px;
+	height: 30px;
+	margin-left: 10px;
+}
+
+.button-radius:hover {
+	-webkit-animation: fluffy 0.8s linear 0s 1;
+	animation: fluffy 0.8s linear 0s 1;
+}
+@-webkit-keyframes fluffy {
+	0%   { -webkit-transform: scale(1.0, 1.0) translate(0%, 0%); }
+	15%  { -webkit-transform: scale(0.9, 0.9) translate(0%, 5%); }
+	30%  { -webkit-transform: scale(1.3, 0.8) translate(0%, 10%); }
+	50%  { -webkit-transform: scale(0.8, 1.3) translate(0%, -10%); }
+	70%  { -webkit-transform: scale(1.1, 0.9) translate(0%, 5%); }
+	100% { -webkit-transform: scale(1.0, 1.0) translate(0%, 0%); }
+}
+@keyframes fluffy {
+	0%   { transform: scale(1.0, 1.0) translate(0%, 0%); }
+	15%  { transform: scale(0.9, 0.9) translate(0%, 5%); }
+	30%  { transform: scale(1.3, 0.8) translate(0%, 10%); }
+	50%  { transform: scale(0.8, 1.3) translate(0%, -10%); }
+	70%  { transform: scale(1.1, 0.9) translate(0%, 5%); }
+	100% { transform: scale(1.0, 1.0) translate(0%, 0%); }
+}
+
+.button-delete{
+    border: 0px;
+    width:24px;
+    height:24px;
+	background: url("delete_icon.png") left top no-repeat;
+}
+
+.button-delete:hover{
+	background: url("delete_icon_hover.png") left top no-repeat;
+}
+
+.control{
+	margin-top: 5px;
+}
+
+body{
+    max-width: 50%;
+  	margin: 0 auto;
+  	border: solid 1px #000000;
+  	background-image: url("kumakichi2020A1939_TP_V.jpg");
+}
+
+.content{
+	margin-top: 0;
+	color:#ffff00;
+}
+
+.name{
+	float: left;
+	margin-right: 10px;
+}
+
+.mention{
+	color: #c0c0c0;
+}
+
+.hedder{
+	background: #000000;
+	color: #ffff00;
+	height: 160px;
+	margin-bottom: 0;
+	padding-right:500px;
+	padding-top: 5%;
+	padding-left: 10%;
+	background-image:url(地球　画像.jpg);
+	background-repeat: no-repeat;
+	
+}
+
+.post{
+	padding-top: 5px;
+	padding-left: 5px;
+}
+
+
