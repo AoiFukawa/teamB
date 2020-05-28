@@ -24,10 +24,6 @@
 		
 			<form class="cp_iptxt" action="DBServlet" method="post">
 				<textarea name="text" rows="4" cols="30" class = "textbox-radius" placeholder="What are you doing now？"></textarea>
-<<<<<<< HEAD
-=======
-				<input type="submit" name="button" value="update" class="button-radius">
->>>>>>> origin/mergeaoi
 				<input type="submit" name="button" value="POST" class="button-radius">
 				<input type="submit" name="button" value="update" class="button-reload button-radius">
 			</form>
@@ -49,7 +45,8 @@
 						<div class="content">${i.content}</div>
 						<form action="DBServlet" method="post" class="control">
 							<input type="submit" name="button" value="" class="button-delete"><input type="hidden" name="id" value="${i.id}">
-
+							<input type="hidden" name="fav_param" value="${i.favorite}">
+							<input name="button" class="fav_button ${css}" type="submit" value="favorite">
 					</form>
 					</div>
 				</div>

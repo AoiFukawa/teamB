@@ -69,7 +69,8 @@ public class DBServlet extends HttpServlet {
 					
 				}else if(btn.equals("update")) {
 					response.sendRedirect("http://localhost:8080/database/DBServlet");
-
+				}else if(btn.equals("favorite")) {
+					dbAccess = new Favorite();
 				}else {
 						dbAccess = new Delete();
 					}
