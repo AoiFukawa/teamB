@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.Dao;
-import servise.SelectForLogin;
-
 
 /**
  * Servlet implementation class Login
@@ -22,7 +20,7 @@ import servise.SelectForLogin;
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -35,11 +33,10 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("utf-8"); 
 		
+		request.setCharacterEncoding("utf-8"); 
 		// セッションの取得(なければnullが返ってくる)
 		HttpSession session = request.getSession(false); 
-		
 		// ここに処理を記入してください
 		// セッションの破棄
 		if(session != null) session.invalidate(); 
@@ -47,23 +44,27 @@ public class Login extends HttpServlet {
 		
 		// ログイン失敗時、ログアウト時、不正操作時以外の場合
 		if(request.getAttribute("message") == null) request.setAttribute("message", "名前とパスワードを入力してください"); //messageがnullの場合
-				
 		response.setContentType("text/html; charset=UTF-8");
 		ServletContext context = getServletContext();
 		RequestDispatcher dis = context.getRequestDispatcher("/top.jsp");
 		dis.forward(request, response);
 	}
 
+
 	/**
 	 * @param spring 
 	 * @param summer 
 	 * @param nomal 
+	/**
+	 * @param autumn 
+	 * @param winter 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		Dao dao;
 		int n = 0;
+		
 		request.setCharacterEncoding("utf-8");
 		
 		HttpSession session = request.getSession(true);
@@ -76,6 +77,10 @@ public class Login extends HttpServlet {
 				session.setAttribute("image", "spring");
 			}else if(request.getParameter("img").equals("summer")) {
 				session.setAttribute("image", "summer");
+			}else if(request.getParameter("img").equals("autumn")) {
+				session.setAttribute("image", "autumn");
+			}else if (request.getParameter("img").equals("winter")){
+				session.setAttribute("image", "winter");
 			}else {
 				session.setAttribute("image", "nomal");
 			}
@@ -93,4 +98,3 @@ public class Login extends HttpServlet {
 		}
 	}
 }
-	

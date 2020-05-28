@@ -17,6 +17,7 @@ label{
 </head>
 <body>
 
+
 	<div>
 		<h1>ログインページ</h1>
 		<p>${message}</p>　<!-- messageはログアアウトしましたになる -->
@@ -27,11 +28,14 @@ label{
 			<label>Pass: </label>
 			<input type="password" name="pass">
 			<br>
+
 			<label>Image:</label>
 			<select name="img">
 			    <option value="nomal">デフォルト</option>
 			    <option value="spring">春</option>
 			    <option value="summer">夏</option>
+			    <option value="autumn">秋</option>
+			    <option value="winter">冬</option>
 			</select>
 			<br>
 			<input class="submit" type="submit" name="button" value="login">
