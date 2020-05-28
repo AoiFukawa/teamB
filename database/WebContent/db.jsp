@@ -34,12 +34,7 @@
 					<div class="icon"><div class="circle"></div></div>
 					<div>
 						<div class="name">${i.username}</div>
-<<<<<<< HEAD
-						<div class="mention">${i.mention}-${i.date}</div>
-=======
 						<div class="mention">@${i.username}_${i.mention}-${i.date}</div>
-
->>>>>>> origin/takahashi
 						<div class="content">${i.content}</div>
 						<form action="DBServlet" method="post" class="control">
 							<input type="submit" name="button" value="" class="button-delete"><input type="hidden" name="id" value="${i.id}">

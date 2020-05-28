@@ -64,7 +64,10 @@ public class DBServlet extends HttpServlet {
 						doGet(request, response);
 						return;
 					}
-					dbAccess = new Insert();																													
+					dbAccess = new Insert();
+				}else if(btn.equals("update")) {
+					response.sendRedirect("http://localhost:8080/database/DBServlet");
+
 				}else {
 						dbAccess = new Delete();
 					}
