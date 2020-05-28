@@ -20,8 +20,7 @@ import dao.Dao;
 @WebServlet("/Login")
 public class Login extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-    /**
+   /**
      * @see HttpServlet#HttpServlet()
      */
     public Login() {
@@ -33,31 +32,32 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
 		
 		request.setCharacterEncoding("utf-8"); 
 		// セッションの取得(なければnullが返ってくる)
 		HttpSession session = request.getSession(false); 
+
 		// ここに処理を記入してください
 		// セッションの破棄
 		if(session != null) session.invalidate(); 
 		// ここに処理を記入してください
-		
+
 		// ログイン失敗時、ログアウト時、不正操作時以外の場合
-		if(request.getAttribute("message") == null) request.setAttribute("message", "名前とパスワードを入力してください"); //messageがnullの場合
+		if(request.getAttribute("message") == null) request.setAttribute("message", "Enter your Name and Password"); //messageがnullの場合
+
 		response.setContentType("text/html; charset=UTF-8");
 		ServletContext context = getServletContext();
 		RequestDispatcher dis = context.getRequestDispatcher("/top.jsp");
 		dis.forward(request, response);
 	}
 
-
 	/**
 	 * @param spring 
 	 * @param summer 
 	 * @param nomal 
-	/**
 	 * @param autumn 
-	 * @param winter 
+	 * @param winter
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -71,7 +71,7 @@ public class Login extends HttpServlet {
 
 		try {
 			dao = new Dao();
-			n = dao.getLoginInfo(request.getParameter("name"), request.getParameter("pass"));
+			n = dao.getLoginInfo(request.getParameter("name"), request.getParameter("pass"), request);
 			
 			if(request.getParameter("img").equals("spring")) {
 				session.setAttribute("image", "spring");
@@ -88,13 +88,14 @@ public class Login extends HttpServlet {
 			// TODO 自動生成された catch ブロック
 			e.printStackTrace();
 		}	
-		
+
 		if(n > 0) {
 			response.sendRedirect("http://localhost:8080/database/DBServlet");
 		}else {
-			request.setAttribute("message", "ログインに失敗しました"); 
-			
+			request.setAttribute("message", "I failed to loguin"); 
 			doGet(request, response);
 		}
 	}
 }
+
+

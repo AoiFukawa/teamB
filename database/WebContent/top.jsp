@@ -6,7 +6,7 @@
 <head>
 <meta charset="utf-8">
 <title>top</title>
-<link rel="stylesheet" href="./style/top.css">
+<link rel="stylesheet" href="top.css">
 <style type="text/css">
 label{
 	display: block;
@@ -16,10 +16,8 @@ label{
 </style>
 </head>
 <body>
-
-
 	<div>
-		<h1>ログインページ</h1>
+		<h1>Login</h1>
 		<p>${message}</p>　<!-- messageはログアアウトしましたになる -->
 		<form action="Login" method="post">
 			<label>Name: </label>

@@ -1,4 +1,5 @@
 package servise;
+
 import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import dao.Dao;
@@ -11,6 +12,7 @@ public class SelectForLogin implements DBAccess {
 	public void execute(HttpServletRequest request) throws SQLException {
 		Dao dao = null;
 		int n = 0;
+		
 		String name = request.getParameter("name");
 		String pass = request.getParameter("pass");
 		if(name == null || name.isEmpty() || pass == null || pass.isEmpty()) {
@@ -18,9 +20,11 @@ public class SelectForLogin implements DBAccess {
 			request.setAttribute("flag", false);
 			return;
 		}
+		
 		try {
 			dao = new Dao();
-			n = dao.getLoginInfo(name, pass);
+			n = dao.getLoginInfo(name, pass, request);
+
 			if(n > 0) {
 				request.setAttribute("flag", true);
 			}else {

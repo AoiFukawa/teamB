@@ -11,6 +11,7 @@
 <body>
 	<div class="hedder">
 		<h1>Hello World</h1>
+
 	</div>
 	
 	<div class="content">
@@ -21,8 +22,9 @@
 				<p class="message">${message}</p> <!-- message表示(messageの中がnullだったらfalseになるから一切表示されない) -->
 			</c:if>
 		
-			<form action="DBServlet" method="post">
-				<textarea name="text" rows="4" cols="30" class = "textbox-radius" placeholder="いまなにしている？"></textarea>
+			<form class="cp_iptxt" action="DBServlet" method="post">
+				<textarea name="text" rows="4" cols="30" class = "textbox-radius" placeholder="What are you doing now？"></textarea>
+				<input type="submit" name="button" value="update" class="button-radius">
 				<input type="submit" name="button" value="POST" class="button-radius">
 			</form>
 		</div>
@@ -32,12 +34,9 @@
 			<c:forEach var="i" items="${list}">
 				<div class="tweet">
 					<div class="icon"><div class="circle" style="background: url('${image}.png');"></div></div>
-
-					
 					<div>
-
-						<div class="name">Hello World</div>
-						<div class="mention">@hello_world-${i.date}</div>
+						<div class="name">${i.username}</div>
+						<div class="mention">@${i.username}_${i.mention}-${i.date}</div>
 						<div class="content">${i.content}</div>
 						<form action="DBServlet" method="post" class="control">
 							<input type="submit" name="button" value="" class="button-delete"><input type="hidden" name="id" value="${i.id}">

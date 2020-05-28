@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import servise.DBAccess;
 import servise.Delete;
 import servise.Insert;
@@ -27,34 +29,41 @@ public class DBServlet extends HttpServlet {
 		dbAccess = new Select();//インターフェイスの型として定義
 		try {
 			dbAccess.execute(request);//全データの情報を持ったexecuteクラスを呼び出している
-		}catch(SQLException e) {
-			e.printStackTrace();
-		}	
-			// ここに処理を記入してください
-			
-		ServletContext context = getServletContext();
-		RequestDispatcher dis = context.getRequestDispatcher("/db.jsp");
-		dis.forward(request, response);
-		}
+	}catch(SQLException e) {
+		e.printStackTrace();
+	}	
+		// ここに処理を記入してください
+		
+	ServletContext context = getServletContext();
+	RequestDispatcher dis = context.getRequestDispatcher("/db.jsp");
+	dis.forward(request, response);
+	}
+	
 	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// request.setCharacterEncoding("utf-8");...filterを用意したので必要なし
+	
 	String btn = request.getParameter("button");
 	System.out.println(btn);
 	try {	
 				// ここに処理を記入してください
 				if(btn.equals("POST")) {//ｂｔｎが押されたものがPostだった場合
+					HttpSession session = request.getSession(false);
 					String input = request.getParameter("text");
+
 					if(input.length() >= 100 || input.equals("") || input == null) {
-						request.setAttribute("message", "何も入力されていないか、100文字を超えています");
+						request.setAttribute("message", "\r\n" + "Is not entered or exceeds 100 characters");
 						doGet(request, response);
 						return;
 					}
-					dbAccess = new Insert();																													
-					}else {
+					dbAccess = new Insert();
+				}else if(btn.equals("update")) {
+					response.sendRedirect("http://localhost:8080/database/DBServlet");
+
+				}else {
 						dbAccess = new Delete();
 					}
 					dbAccess.execute(request);
