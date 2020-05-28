@@ -79,9 +79,11 @@ h1, p{
 
 body{
     max-width: 50%;
-  	margin: 0 auto;
+  	margin:  0 auto;
+  	padding-light: 200px;
   	border: solid 1px #000000;
   	background-image: url("kumakichi2020A1939_TP_V.jpg");
+    background-size:contain
 }
 
 .content{
