@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import servise.DBAccess;
 import servise.Delete;
+import servise.Favorite;
 import servise.Insert;
 import servise.Select;
 /**
@@ -68,7 +69,8 @@ public class DBServlet extends HttpServlet {
 					
 				}else if(btn.equals("update")) {
 					response.sendRedirect("http://localhost:8080/database/DBServlet");
-
+				}else if(btn.equals("favorite")) {
+					dbAccess = new Favorite();
 				}else {
 						dbAccess = new Delete();
 					}

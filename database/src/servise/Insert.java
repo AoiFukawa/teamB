@@ -31,8 +31,7 @@ public class Insert implements DBAccess { //DBAccess
 				}else {//なんらかの理由によりポストが出来なかった場合
 					request.setAttribute("message", "Post failure...");
 					System.out.println("Insert failed...");
-				}	
-			
+				}
 		}finally {
 			if(dao != null) dao.close();
 		}

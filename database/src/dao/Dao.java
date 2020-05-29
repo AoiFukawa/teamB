@@ -64,6 +64,7 @@ public class Dao {
 				dto.setusername(rs.getString("username"));
 				dto.setContent(rs.getString("content"));//content列の文をストリング型として受け取る
 				dto.setDate(rs.getString("date"));//date列を取得してString型として受け取る
+				dto.setFavorite(rs.getBoolean("favorite"));
 				list.add(dto);
 			}
 			rs.close();//SQL自体必要がなくなったためリソースを開放する
@@ -108,6 +109,13 @@ public class Dao {
 		return executeUpdate(sql, id);
 		// ここに処理を記入してください
 	}
+	
+	public int favoriteData(String id, boolean favorite) throws SQLException {
+		String sql = "update tweet set favorite = ? where id = ?";
+		return executeUpdate(sql, id, favorite);
+		// ここに処理を記入してください
+	}
+	
 	/**
 	 * 登録、削除処理を担当するメソッド<br>
 	 * 使用するメソッドは共通のため汎用化
@@ -130,6 +138,34 @@ public class Dao {
 		}
 		return n;
 	}
+	/**
+	 * 登録、削除処理を担当するメソッド<br>
+	 * 使用するメソッドは共通のため汎用化
+	 * @param sql (SQL文)
+	 * @param param (INパラメータ)
+	 * @return 成功件数
+	 * @throws SQLException
+	 */
+	private int executeUpdate(String sql, String param, boolean param2) throws SQLException {
+		
+		// ここに処理を記入してください
+		PreparedStatement ps = null;
+		int n = 0;
+		
+		try {
+			ps = con.prepareStatement(sql);
+
+			ps.setBoolean(1, param2);
+			if(isNumber(param)) ps.setInt(2,  Integer.parseInt(param));
+			else ps.setString(2, param);
+			n = ps.executeUpdate();
+			
+		}finally {
+			ps.close();
+		}
+		return n;
+	}
+	
 	/**
 	 * 数値判定メソッド<br>
 	 * 引数に受け取った値が数値に変換できなければ例外発生
