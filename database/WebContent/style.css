@@ -129,14 +129,13 @@ body{
 }
 
 .hedder{
-	background: #000000;
 	color: #ff8c00;
 	height: 160px;
 	margin-bottom: 0;
 	padding-right:500px;
 	padding-top: 5%;
 	padding-left: 10%;
-	background-image:url(地球　画像.jpg);
+	background-image:url(earth.png);
 	background-repeat: no-repeat;
 	
 }
