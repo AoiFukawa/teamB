@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .message{
-	color: #ffff00;
+	color: #ff8c00;
 }
 
 h1, p{
@@ -88,7 +88,7 @@ body{
 
 .content{
 	margin-top: 0;
-	color:#ffff00;
+	color:#ff8c00;
 }
 
 .name{
@@ -102,7 +102,7 @@ body{
 
 .hedder{
 	background: #000000;
-	color: #ffff00;
+	color: #ff8c00;
 	height: 160px;
 	margin-bottom: 0;
 	padding-right:500px;

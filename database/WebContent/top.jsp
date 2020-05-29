@@ -28,12 +28,13 @@ label{
 			<br>
 
 			<label>Image:</label>
-			<select name="img">
-			    <option value="nomal">デフォルト</option>
-			    <option value="spring">春</option>
-			    <option value="summer">夏</option>
-			    <option value="autumn">秋</option>
-			    <option value="winter">冬</option>
+			<br>
+			<select class="piuture" name="img" >
+			    <option value="nomal">Default</option>
+			    <option value="spring">Spring</option>
+			    <option value="summer">Summer</option>
+			    <option value="autumn">Autumn</option>
+			    <option value="winter">Winter</option>
 			</select>
 			<br>
 			<input class="submit" type="submit" name="button" value="login">
