@@ -73,23 +73,32 @@ h1, p{
 	background: url("delete_icon_hover.png") left top no-repeat;
 }
 .fav_button{
-	width: 24px;
-	height: 24px;
+	width: 20px;
+	height: 20px;
 	border: none;
-	filter: invert(15%) sepia(95%) saturate(6932%) hue-rotate(358deg) brightness(95%) contrast(112%);
+	padding-top: 14px;
+	
 	text-indent: -9999px;
 }
 .fav_icon{
-	background: url("favorite.svg") no-repeat;
+	background: url("star.svg") no-repeat;
+	filter: contrast(100%);
+	background-size: cover;
 }
 .fav_icon:hover{
-	background: url("favorite_border.svg") no-repeat;
+	background: url("star.svg") no-repeat;
+	filter: contrast(10%);
+	background-size: cover;
 }
 .nofav_icon{
-	background: url("favorite_border.svg") no-repeat;
+	background: url("star.svg") no-repeat;
+	filter: contrast(10%);
+	background-size: cover;
 }
 .nofav_icon:hover{
-	background: url("favorite.svg") no-repeat;
+	background: url("star.svg") no-repeat;
+	filter: contrast(100%);
+	background-size: cover;
 }
 
 .control{
@@ -149,4 +158,18 @@ body{
 
 .favorite:hover{
 	background: url("favorite.png") left top no-repeat;
+}
+
+
+#bg-video{
+ position: fixed;
+ right: 0;
+ bottom: 0;
+ min-width: 100%;
+ min-height: 100%;
+ width: auto;
+ height: auto;
+ z-index: -100;
+background: url('新しいビデオ - コピー_Trim.mp4') no-repeat;
+ background-size: cover;
 }

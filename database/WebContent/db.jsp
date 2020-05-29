@@ -9,6 +9,10 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
+	<div class="wrap">
+	 <!-- 背景用の動画ファイル -->
+	 <video id="bg-video" src="新しいビデオ - コピー_Trim.mp4"  autoplay loop></video>
+	</div>
 	<div class="hedder">
 		<h1>Hello World</h1>
 
